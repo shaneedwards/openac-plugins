@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "plugins": [
+    {
+      "id": "edwards.hello",
+      "name": "Hello",
+      "author": "Shane Edwards",
+      "description": "Says hello.",
+      "repo": "shaneedwards/openac-plugin-hello"
+    }
+  ],
+  "blocked": []
+}
