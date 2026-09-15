@@ -2,8 +2,8 @@
 
 The plugin list the [OpenAC](https://github.com/eriknihlen/OpenAC) launcher reads to populate its
 Plugins → Discover tab and to filter blocked plugins out of every character's allow-list at
-launch. Proof of concept, on Shane's account (`plan-launcher-plugins.md` L-308); the launcher
-also accepts a `--plugin-list-uri` override for testing.
+launch. Proof of concept, hosted on Shane's account for now; the launcher also accepts a
+`--plugin-list-uri` override for testing.
 
 ## Format
 
@@ -26,15 +26,16 @@ also accepts a `--plugin-list-uri` override for testing.
   launcher's other manifests.
 - `plugins` — one entry per listed plugin. `repo` is `owner/name` on GitHub; the launcher reads
   that repository's releases directly (no GitHub API calls).
-- `blocked` — id/version pairs the launcher refuses to install or update to, badges red if
-  already installed, and filters out of every character's plugin allow-list at launch with a
-  status line. `versions: ["*"]` blocks every version of that id. This lives in the same file as
-  `plugins` rather than a separate `blocked.json`: one file to fetch, one file to publish.
+- `blocked` — id/version pairs the launcher refuses to install or update to. A blocked plugin that
+  is not installed is hidden from Discover; one that is installed shows "Blocked: <reason>" and is
+  filtered out of every character's plugin list at launch, with a line in the session log.
+  `versions: ["*"]` blocks every version of that id. This lives in the same file as `plugins`
+  rather than a separate `blocked.json`: one file to fetch, one file to publish.
 
 `plugins-blocked-test.json` in this repo is not part of the live list. It is the LP-12 runtime
 test fixture: the same catalog with `edwards.hello` blocked at every version, reason `"test"`,
-published as a throwaway list release during that runtime step and then abandoned in favor of the
-real `v1` release again.
+published as a throwaway list release during that runtime step and then replaced by a normal list
+release again.
 
 ## Publishing
 
@@ -46,3 +47,6 @@ real `v1` release again.
 4. Make sure GitHub marks it *latest*.
 
 The launcher fetches `https://github.com/shaneedwards/openac-plugins/releases/latest/download/plugins.json`.
+
+Right after a new release, that link can still serve the previous list for about a minute. Wait a
+minute, then press **Check now** in the launcher before judging whether the change arrived.
