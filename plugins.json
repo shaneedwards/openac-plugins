@@ -7,6 +7,13 @@
       "author": "Shane Edwards",
       "description": "Says hello.",
       "repo": "shaneedwards/openac-plugin-hello"
+    },
+    {
+      "id": "solrlabs.buffbot",
+      "name": "BuffBot",
+      "author": "SolrLabs",
+      "description": "Buffs you and your fellowship on request, in game or headless.",
+      "repo": "solrlabs/openac-buffbot"
     }
   ],
   "blocked": []
